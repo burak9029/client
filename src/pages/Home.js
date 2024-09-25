@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard.js';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -15,6 +16,10 @@ const Home = () => {
         };
         fetchProducts();
     },[]);
+    
+    const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className='container mx-auto p-4'>
         <h1 className='text-3xl font-bold mb-4'>Products</h1>
