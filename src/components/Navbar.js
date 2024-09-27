@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import AuthContext
- from '../context/AuthContext';
+import AuthContext from '../context/AuthContext';
+import Modal from './Modal';
+import LoginForm from './LoginForm';
+
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
@@ -13,7 +15,13 @@ const Navbar = () => {
     <button onClick={logout} className='ml-4 text-white'> Logout</button>
     </>
 ): (
+        <>
     <a href='/login' className='text-white'>Login</a>
+    <button onClick={() => setIsModalOpen(true)} className='ml-4 text-white'>Logout</button>
+    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <LoginForm/>
+    </Modal>
+    </>
 )}
     </nav>
     
